@@ -15,7 +15,7 @@ package body Q_FP_Data.Q_Manager is
 
 procedure P_DELETE_FLIGHT_PLAN(INDEX : in Natural := Natural'Last; CALLSIGN : in T_CALLSIGN := (others => ' ')) is
    begin
-      if INDEX /= Natural'Last and then CALLSIGN /= "       " then
+      if INDEX /= Natural'Last and then CALLSIGN /= Q_FP_Data.C_EMPTY_CALLSIGN then
          Ada.Text_IO.Put_Line("Both index and callsign provided. No flight plan will be deleted.");
          return;
       end if;
@@ -30,7 +30,7 @@ procedure P_DELETE_FLIGHT_PLAN(INDEX : in Natural := Natural'Last; CALLSIGN : in
          end if;
       end if;
 
-      if CALLSIGN /= "       " then
+      if CALLSIGN /= Q_FP_Data.C_EMPTY_CALLSIGN then
          declare
          begin
             for I in V_FLIGHT_PLAN_LIST.First_Index .. V_FLIGHT_PLAN_LIST.Last_Index loop

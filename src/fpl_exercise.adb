@@ -14,7 +14,7 @@ procedure Fpl_Exercise is
          return V_TEMP_FPL;
       end if;
       -- Example of adding a flight plan
-      V_TEMP_FPL.R_CALLSIGN := "       ";
+      V_TEMP_FPL.R_CALLSIGN := Q_FP_Data.C_EMPTY_CALLSIGN;
       V_TEMP_FPL.R_CALLSIGN(1 .. CALLSIGN'Length) := CALLSIGN;
       V_TEMP_FPL.R_ADEP := "EGLL";
       V_TEMP_FPL.R_ADES := "EGKK";

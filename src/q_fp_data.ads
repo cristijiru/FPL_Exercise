@@ -5,6 +5,8 @@ package Q_FP_Data is
    type T_WAKE_TURBULENCE is ('L', 'M', 'H', 'J');
    subtype T_CALLSIGN is String(1 .. 7);
 
+   C_EMPTY_CALLSIGN : constant Q_FP_Data.T_CALLSIGN := (others => ' ');
+
    -- Define the record for flight plan (FP) fields
    type T_FLIGHT_PLAN is record
       R_CALLSIGN         : T_CALLSIGN;        -- Alphanumeric string, up to 7 characters
