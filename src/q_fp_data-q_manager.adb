@@ -46,7 +46,7 @@ procedure P_DELETE_FLIGHT_PLAN(INDEX : in Natural := Natural'Last; CALLSIGN : in
 
    procedure P_EDIT_FLIGHT_PLAN(INDEX : in Natural; FPL : in Q_FP_Data.T_FLIGHT_PLAN) is
    begin
-      if INDEX <= Natural(V_FLIGHT_PLAN_LIST.Length) then
+      if INDEX <= Natural(V_FLIGHT_PLAN_LIST.Length) and then Q_FP_Data.Q_Validation.F_VALIDATE_FPL(FPL) then
          V_FLIGHT_PLAN_LIST(INDEX) := FPL;
       else
          Ada.Text_IO.Put_Line("Invalid index. Cannot edit flight plan.");
