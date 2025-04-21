@@ -1,11 +1,12 @@
 with Ada.Text_IO;
 with Q_FP_Data;
+with Q_FP_Data.Q_Validation;
 
 package body Q_FP_Data.Q_Manager is
 
    procedure P_ADD_FLIGHT_PLAN(FPL : in Q_FP_Data.T_FLIGHT_PLAN) is
    begin
-      if Natural(V_FLIGHT_PLAN_LIST.Length) < C_MAX_FLIGHT_PLANS then
+      if Natural(V_FLIGHT_PLAN_LIST.Length) < C_MAX_FLIGHT_PLANS and then Q_FP_Data.Q_Validation.F_VALIDATE_FPL(FPL) then
          V_FLIGHT_PLAN_LIST.Append(FPL);
       else
          Ada.Text_IO.Put_Line("Flight plan list is full. Cannot add more plans.");

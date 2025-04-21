@@ -4,7 +4,7 @@ with Ada.Characters.Handling;
 package body Q_FP_Data.Q_Validation is
 
    -- Validate Callsign (alphanumeric, up to 7 characters)
-   function Validate_Callsign(Callsign : T_CALLSIGN) return Boolean is
+   function F_VALIDATE_CALLSIGN(Callsign : T_CALLSIGN) return Boolean is
    begin
       if Callsign'Length > 7 then
          return False;
@@ -17,10 +17,10 @@ package body Q_FP_Data.Q_Validation is
       end loop;
 
       return True;
-   end Validate_Callsign;
+   end F_VALIDATE_CALLSIGN;
 
    -- Validate ADEP and ADES (exactly 4 alphabetic characters)
-   function Validate_Airport_Code(Code : String) return Boolean is
+   function F_VALIDATE_AIRPORT_CODE(Code : String) return Boolean is
    begin
       if Code'Length /= 4 then
          return False;
@@ -33,10 +33,10 @@ package body Q_FP_Data.Q_Validation is
       end loop;
 
       return True;
-   end Validate_Airport_Code;
+   end F_VALIDATE_AIRPORT_CODE;
 
    -- Validate EOBT (format: H1H2M1M2, where H1H2 is 00-23 and M1M2 is 00-59)
-   function Validate_EOBT(EOBT : String) return Boolean is
+   function F_VALIDATE_EOBT(EOBT : String) return Boolean is
       Hours : Integer;
       Minutes : Integer;
    begin
@@ -51,10 +51,10 @@ package body Q_FP_Data.Q_Validation is
    exception
       when others =>
          return False;
-   end Validate_EOBT;
+   end F_VALIDATE_EOBT;
 
    -- Validate EOBD (format: YYMMDD, with valid ranges for year, month, and day)
-   function Validate_EOBD(EOBD : String) return Boolean is
+   function F_VALIDATE_EOBD(EOBD : String) return Boolean is
       Year : Integer;
       Month : Integer;
       Day : Integer;
@@ -84,10 +84,10 @@ package body Q_FP_Data.Q_Validation is
    exception
       when others =>
          return False;
-   end Validate_EOBD;
+   end F_VALIDATE_EOBD;
 
    -- Validate Aircraft Number (1 to 2 numeric characters)
-   function Validate_Aircraft_Number(Number : String) return Boolean is
+   function F_VALIDATE_AIRCRAFT_NUMBER(Number : String) return Boolean is
    begin
       if Number'Length < 1 or Number'Length > 2 then
          return False;
@@ -100,10 +100,10 @@ package body Q_FP_Data.Q_Validation is
       end loop;
 
       return True;
-   end Validate_Aircraft_Number;
+   end F_VALIDATE_AIRCRAFT_NUMBER;
 
    -- Validate Aircraft Type (2 to 4 alphanumeric characters)
-   function Validate_Aircraft_Type(V_TYPE : String) return Boolean is
+   function F_VALIDATE_AIRCRAFT_TYPE(V_TYPE : String) return Boolean is
    begin
       if V_TYPE'Length < 2 or V_TYPE'Length > 4 then
          return False;
@@ -116,11 +116,11 @@ package body Q_FP_Data.Q_Validation is
       end loop;
 
       return True;
-   end Validate_Aircraft_Type;
+   end F_VALIDATE_AIRCRAFT_TYPE;
 
 
    -- Validate SSR Code (4 octal digits)
-   function Validate_SSR_Code(Code : String) return Boolean is
+   function F_VALIDATE_SSR_CODE(Code : String) return Boolean is
    begin
       if Code'Length /= 4 then
          return False;
@@ -133,6 +133,57 @@ package body Q_FP_Data.Q_Validation is
       end loop;
 
       return True;
-   end Validate_SSR_Code;
+   end F_VALIDATE_SSR_CODE;
+
+   function F_VALIDATE_FPL(FPL : T_FLIGHT_PLAN) return Boolean is
+   begin
+      if not F_VALIDATE_CALLSIGN(FPL.R_CALLSIGN) then
+         Ada.Text_IO.Put_Line("Invalid Callsign");
+         return False;
+      end if;
+
+      if not F_VALIDATE_AIRPORT_CODE(FPL.R_ADEP) then
+         Ada.Text_IO.Put_Line("Invalid ADEP");
+         return False;
+      end if;
+
+      if not F_VALIDATE_AIRPORT_CODE(FPL.R_ADES) then
+         Ada.Text_IO.Put_Line("Invalid ADES");
+         return False;
+      end if;
+
+      if not F_VALIDATE_EOBT(FPL.R_EOBT) then
+         Ada.Text_IO.Put_Line("Invalid EOBT");
+         return False;
+      end if;
+
+      if not F_VALIDATE_EOBD(FPL.R_EOBD) then
+         Ada.Text_IO.Put_Line("Invalid EOBD");
+         return False;
+      end if;
+
+      if not F_VALIDATE_AIRCRAFT_NUMBER(FPL.R_AIRCRAFT_NUMBER) then
+         Ada.Text_IO.Put_Line("Invalid Aircraft Number");
+         return False;
+      end if;
+
+      if not F_VALIDATE_AIRCRAFT_TYPE(FPL.R_AIRCRAFT_TYPE) then
+         Ada.Text_IO.Put_Line("Invalid Aircraft Type");
+         return False;
+      end if;
+
+      if not F_VALIDATE_SSR_CODE(FPL.R_SSR_CODE) then
+         Ada.Text_IO.Put_Line("Invalid SSR Code");
+         return False;
+      end if;
+
+      return True;
+
+   exception
+      when others =>
+         Ada.Text_IO.Put_Line("Validation failed due to an unexpected error.");
+         return False;
+
+   end F_VALIDATE_FPL;
 
 end Q_FP_Data.Q_Validation;
