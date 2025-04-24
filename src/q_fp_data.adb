@@ -1,16 +1,16 @@
-package body Q_FP_Data is
+package body Q_FP_DATA is
 
-   function "<" (Left, Right : T_FLIGHT_PLAN) return Boolean is
+   function "<" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN is
    begin
-      return Left.R_CALLSIGN < Right.R_CALLSIGN;
+      return V_LEFT.R_CALLSIGN < V_RIGHT.R_CALLSIGN;
    end "<";
-   function ">" (Left, Right : T_FLIGHT_PLAN) return Boolean is
+   function ">" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN is
    begin
-      return Left.R_CALLSIGN > Right.R_CALLSIGN;
+      return V_LEFT.R_CALLSIGN > V_RIGHT.R_CALLSIGN;
    end ">";
-   function "=" (Left, Right : T_FLIGHT_PLAN) return Boolean is
+   function "=" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN is
    begin
-      return Left.R_CALLSIGN = Right.R_CALLSIGN;
+      return V_LEFT.R_CALLSIGN = V_RIGHT.R_CALLSIGN;
    end "=";
 
-end Q_FP_Data;
+end Q_FP_DATA;

@@ -1,29 +1,28 @@
-with Q_FP_Data;
 with Ada.Containers.Vectors;
 
-package Q_FP_Data.Q_Manager is
+package Q_FP_DATA.Q_MANAGER is
 
-   package FP_Vector is new Ada.Containers.Vectors(
-      Index_Type   => Natural,
-      Element_Type => Q_FP_Data.T_FLIGHT_PLAN
-   );
-   
-   package FP_Sort is new FP_Vector.Generic_Sorting;
-   
-   --type T_SORT_CRITERIA is (CALLSIGN, EOBT, EOBD, AIRCRAFT_NUMBER, SSR_CODE);
+   package Q_FP_VECTOR is new
+     Ada.Containers.Vectors
+       (Index_Type   => NATURAL,
+        Element_Type => Q_FP_DATA.T_FLIGHT_PLAN);
 
-   V_FLIGHT_PLAN_LIST : FP_Vector.Vector;
+   package Q_FP_SORT is new Q_FP_VECTOR.Generic_Sorting;
 
-   C_MAX_FLIGHT_PLANS : constant Natural := 1000;
+   -- type T_SORT_CRITERIA is (CALLSIGN, EOBT, EOBD, AIRCRAFT_NUMBER, SSR_CODE);
 
-   procedure P_ADD_FLIGHT_PLAN(FPL : in Q_FP_Data.T_FLIGHT_PLAN);
+   V_FLIGHT_PLAN_LIST : Q_FP_VECTOR.Vector;
 
-   procedure P_DELETE_FLIGHT_PLAN(INDEX : in Natural := Natural'Last; CALLSIGN : in T_CALLSIGN := (others => ' '));
+   C_MAX_FLIGHT_PLANS : constant NATURAL := 1000;
 
-   procedure P_EDIT_FLIGHT_PLAN(INDEX : in Natural; FPL : in Q_FP_Data.T_FLIGHT_PLAN);
+   procedure P_ADD_FLIGHT_PLAN (V_FPL : in Q_FP_DATA.T_FLIGHT_PLAN);
+
+   procedure P_DELETE_FLIGHT_PLAN
+     (V_INDEX    : in NATURAL := NATURAL'LAST;
+      V_CALLSIGN : in T_CALLSIGN := (others => ' '));
 
    procedure P_DISPLAY_FLIGHT_PLANS;
-   
+
    procedure P_SORT_FLIGHT_PLANS;
 
-end Q_FP_Data.Q_Manager;
+end Q_FP_DATA.Q_MANAGER;
