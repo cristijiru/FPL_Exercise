@@ -82,9 +82,24 @@ package body Q_FP_DATA.Q_MANAGER is
       end loop;
    end P_DISPLAY_FLIGHT_PLANS;
 
-   procedure P_SORT_FLIGHT_PLANS is
+   procedure P_SORT_FLIGHT_PLANS (V_CRITERION : T_SORT_CRITERION) is
    begin
-      Q_FP_SORT.Sort (V_FLIGHT_PLAN_LIST);
+      case V_CRITERION is
+         when E_CALLSIGN =>
+            Q_FP_SORT_CALLSIGN.Sort (V_FLIGHT_PLAN_LIST);
+
+         when E_EOBT =>
+            Q_FP_SORT_EOBT.Sort (V_FLIGHT_PLAN_LIST);
+
+         when E_EOBD =>
+            Q_FP_SORT_EOBD.Sort (V_FLIGHT_PLAN_LIST);
+
+         when E_AIRCRAFT_NUMBER =>
+            Q_FP_SORT_AIRCRAFT_NUMBER.Sort (V_FLIGHT_PLAN_LIST);
+
+         when E_SSR_CODE =>
+            Q_FP_SORT_SSR_CODE.Sort (V_FLIGHT_PLAN_LIST);
+      end case;
    end P_SORT_FLIGHT_PLANS;
 
 end Q_FP_DATA.Q_MANAGER;

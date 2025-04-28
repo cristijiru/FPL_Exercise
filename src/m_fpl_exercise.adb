@@ -48,8 +48,14 @@ begin
 
    Ada.Text_IO.Put_Line ("Unsorted Flight Plans:");
    Q_FP_DATA.Q_MANAGER.P_DISPLAY_FLIGHT_PLANS;
-   Q_FP_DATA.Q_MANAGER.P_SORT_FLIGHT_PLANS;
-   Ada.Text_IO.Put_Line ("Sorted Flight Plans:");
+   Q_FP_DATA.Q_MANAGER.P_SORT_FLIGHT_PLANS
+     (V_CRITERION => Q_FP_DATA.Q_MANAGER.E_CALLSIGN);
+   Ada.Text_IO.Put_Line ("Flight Plans Sorted by Callsign:");
+   Q_FP_DATA.Q_MANAGER.P_DISPLAY_FLIGHT_PLANS;
+
+   Q_FP_DATA.Q_MANAGER.P_SORT_FLIGHT_PLANS
+     (V_CRITERION => Q_FP_DATA.Q_MANAGER.E_SSR_CODE);
+   Ada.Text_IO.Put_Line ("Flight Plans Sorted by SSR:");
    Q_FP_DATA.Q_MANAGER.P_DISPLAY_FLIGHT_PLANS;
 
 end M_FPL_EXERCISE;

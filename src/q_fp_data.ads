@@ -44,8 +44,24 @@ package Q_FP_DATA is
       R_ROUTE           : STRING (1 .. 300);
    end record;
 
-   function "<" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN;
-   function ">" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN;
-   function "=" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN;
+   function F_FP_COMPARE_CALLSIGN
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN;
+
+   function F_FP_COMPARE_EOBT
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN;
+
+   function F_FP_COMPARE_EOBD
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN;
+
+   function F_FP_COMPARE_AIRCRAFT_NUMBER
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN;
+
+   function F_FP_COMPARE_SSR_CODE
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN;
 
 end Q_FP_DATA;

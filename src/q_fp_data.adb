@@ -1,16 +1,38 @@
 package body Q_FP_DATA is
 
-   function "<" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN is
+   function F_FP_COMPARE_CALLSIGN
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN is
    begin
       return V_LEFT.R_CALLSIGN < V_RIGHT.R_CALLSIGN;
-   end "<";
-   function ">" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN is
+   end F_FP_COMPARE_CALLSIGN;
+
+   function F_FP_COMPARE_EOBT
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN is
    begin
-      return V_LEFT.R_CALLSIGN > V_RIGHT.R_CALLSIGN;
-   end ">";
-   function "=" (V_LEFT, V_RIGHT : T_FLIGHT_PLAN) return BOOLEAN is
+      return V_LEFT.R_EOBT < V_RIGHT.R_EOBT;
+   end F_FP_COMPARE_EOBT;
+
+   function F_FP_COMPARE_EOBD
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN is
    begin
-      return V_LEFT.R_CALLSIGN = V_RIGHT.R_CALLSIGN;
-   end "=";
+      return V_LEFT.R_EOBD < V_RIGHT.R_EOBD;
+   end F_FP_COMPARE_EOBD;
+
+   function F_FP_COMPARE_AIRCRAFT_NUMBER
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN is
+   begin
+      return V_LEFT.R_AIRCRAFT_NUMBER < V_RIGHT.R_AIRCRAFT_NUMBER;
+   end F_FP_COMPARE_AIRCRAFT_NUMBER;
+
+   function F_FP_COMPARE_SSR_CODE
+     (V_LEFT : Q_FP_DATA.T_FLIGHT_PLAN; V_RIGHT : Q_FP_DATA.T_FLIGHT_PLAN)
+      return BOOLEAN is
+   begin
+      return V_LEFT.R_SSR_CODE < V_RIGHT.R_SSR_CODE;
+   end F_FP_COMPARE_SSR_CODE;
 
 end Q_FP_DATA;
