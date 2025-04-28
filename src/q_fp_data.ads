@@ -4,6 +4,7 @@ package Q_FP_DATA is
    type T_FLIGHT_TYPE is ('S', 'N', 'G', 'M', 'X');
    type T_WAKE_TURBULENCE is ('L', 'M', 'H', 'J');
    subtype T_CALLSIGN is STRING (1 .. 7);
+   subtype T_SSR is STRING (1 .. 4);
 
    C_EMPTY_CALLSIGN : constant T_CALLSIGN := (others => ' ');
 
@@ -34,7 +35,7 @@ package Q_FP_DATA is
       -- Up to 20 alphabetic characters
       R_SSR_EQUIPMENT   : STRING (1 .. 20);
       -- 4 octal digits
-      R_SSR_CODE        : STRING (1 .. 4);
+      R_SSR_CODE        : T_SSR;
       -- Formats: KC1C2C3C4, NC1C2C3C4, MC1C2C3
       R_TAS             : STRING (1 .. 5);
       -- Formats: AC1C2C3, FC1C2C3, MC1C2C3C4, SC1C2C3C4, VFR

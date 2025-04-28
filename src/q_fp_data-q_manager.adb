@@ -74,6 +74,8 @@ package body Q_FP_DATA.Q_MANAGER is
            ("Flight Plan "
             & V_FPL.R_CALLSIGN
             & " "
+            & V_FPL.R_SSR_CODE
+            & " "
             & V_FPL.R_ADEP
             & " "
             & V_FPL.R_ADES);
