@@ -44,8 +44,9 @@ package body Q_FP_DATA.Q_VALIDATION is
          return FALSE;
       end if;
 
-      V_HOURS := INTEGER'VALUE (V_EOBT (1 .. 2));
-      V_MINUTES := INTEGER'VALUE (V_EOBT (3 .. 4));
+      V_HOURS := INTEGER'VALUE (V_EOBT (V_EOBT'FIRST .. V_EOBT'FIRST + 1));
+      V_MINUTES :=
+        INTEGER'VALUE (V_EOBT (V_EOBT'FIRST + 2 .. V_EOBT'FIRST + 3));
 
       return
         (V_HOURS >= 0 and then V_HOURS <= 23)
@@ -65,9 +66,9 @@ package body Q_FP_DATA.Q_VALIDATION is
          return FALSE;
       end if;
 
-      V_YEAR := INTEGER'VALUE (V_EOBD (1 .. 2));
-      V_MONTH := INTEGER'VALUE (V_EOBD (3 .. 4));
-      V_DAY := INTEGER'VALUE (V_EOBD (5 .. 6));
+      V_YEAR := INTEGER'VALUE (V_EOBD (V_EOBD'FIRST .. V_EOBD'FIRST + 1));
+      V_MONTH := INTEGER'VALUE (V_EOBD (V_EOBD'FIRST + 2 .. V_EOBD'FIRST + 3));
+      V_DAY := INTEGER'VALUE (V_EOBD (V_EOBD'FIRST + 4 .. V_EOBD'FIRST + 5));
 
       if V_MONTH < 1 or else V_MONTH > 12 then
          return FALSE;
